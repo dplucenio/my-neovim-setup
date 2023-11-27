@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>w", ":w<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>li", ":set list!<CR>")
-vim.keymap.set("n", "<F3>", ":set paste!<CR>")
 
 vim.keymap.set("n", "<leader>g", ":Ge:<CR>")
 
