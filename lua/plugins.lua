@@ -54,9 +54,11 @@ return {
         },
         config = function() -- from https://github.com/VonHeikemen/lsp-zero.nvim#usage
             local lsp = require('lsp-zero').preset({})
-            lsp.on_attach(function(client, bufnr)
-                lsp.default_keymaps({ buffer = bufnr })
-            end)
+            lsp.on_attach(
+                function(client, bufnr)
+                    lsp.default_keymaps({ buffer = bufnr })
+                end
+            )
             -- (Optional) Configure lua language server for neovim
             require('mason').setup({})
             require('mason-lspconfig').setup({
@@ -69,6 +71,25 @@ return {
             -- lsp.setup()
         end
     },
+    {
+        "hrsh7th/nvim-cmp",
+        opts = function(_, opts)
+            local cmp = require("cmp")
+            local cmp_action = require('lsp-zero').cmp_action()
+            cmp.setup({
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+                    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+                })
+            })
+        end,
+    },
     { "dracula/vim",                   name = "dracula" },
     { "tssm/fairyfloss.vim",           name = "fairyfloss" },
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end,
+    }
 }
