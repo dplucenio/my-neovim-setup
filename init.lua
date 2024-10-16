@@ -2,6 +2,5 @@ require "core"
 require "mappings"
 require "lazy-config"
 
--- Enable termguicolors / setup colorscheme
-vim.o.termguicolors = true
-vim.cmd("colorscheme dracula")
+vim.o.termguicolors = true     -- Enable termguicolors
+vim.cmd("colorscheme dracula") -- / setup colorscheme
